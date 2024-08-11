@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from users.models import UserProfile
+from django.core.mail import send_mail
 # Create your views here.
 
 class form_new_task(forms.Form):
@@ -33,6 +34,13 @@ def adding(request):
 def print_user(request):
     user = request.user  # This is the logged-in user
     user_profile = UserProfile.objects.get(user=user)  # Fetch the UserProfile associated with the logged-in user
+
+    send_mail(
+    "Subject here",
+    "Here is the message.",
+    "fokak908070@gmail.com",
+    ["yessirahmed95@gmail.com"],
+    fail_silently=False,)
 
     context = {
         'user': user, # this is the name of the user
