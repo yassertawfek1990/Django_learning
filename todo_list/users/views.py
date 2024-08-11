@@ -12,3 +12,5 @@ def register_view(request):
     else:
         form = RegisterationUserForm()
     return render(request, "users/register.html", { "form": form })
+
+

@@ -2,6 +2,8 @@ from django import forms
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from users.models import UserProfile
 # Create your views here.
 
 class form_new_task(forms.Form):
@@ -26,3 +28,15 @@ def adding(request):
             return render(request, "todo/to_add.html", {"form":data})
     else:
         return render(request, "todo/to_add.html", {"form":form_new_task()})
+    
+
+def print_user(request):
+    user = request.user  # This is the logged-in user
+    user_profile = UserProfile.objects.get(user=user)  # Fetch the UserProfile associated with the logged-in user
+
+    context = {
+        'user': user, # this is the name of the user
+        'user_profile': user_profile,
+    }
+    print(user_profile.user.email)
+    return render(request, 'todo/profile.html', context)

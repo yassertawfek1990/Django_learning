@@ -1,0 +1,15 @@
+{% extends "todo/base.html" %}
+    {% block body%}
+    <h1>user</h1>
+    <ul>
+        <ul>
+            
+              <li>{{user}}</li>
+              <li>{{user_profile.user.email}}</li>
+              <li>{{user_profile.user.first_name}}</li>
+            
+            </ul>
+       
+    </ul>
+
+    {% endblock %}
