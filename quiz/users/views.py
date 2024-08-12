@@ -21,7 +21,7 @@ def register_user(request):
     if request.method == "POST":
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit = True)
+            user = form.save(commit = False)
             user.is_active = False
             user.save()
             
