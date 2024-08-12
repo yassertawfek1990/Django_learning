@@ -36,9 +36,9 @@
       <div class="container">
         <footer class="py-3 my-4">
           <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Contact Us</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Suggessions</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About Us</a></li>
+            <li class="nav-item"><a href={% url "contact" %} class="nav-link px-2 text-body-secondary">Contact Us</a></li>
+            <li class="nav-item"><a href={% url "suggestion" %}  class="nav-link px-2 text-body-secondary">Suggestions</a></li>
+            <li class="nav-item"><a href={% url "about" %} class="nav-link px-2 text-body-secondary">About Us</a></li>
           </ul>
           <p class="text-center text-body-secondary">© 2024 Company, Inc</p>
         </footer>
