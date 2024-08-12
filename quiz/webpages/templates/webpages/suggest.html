@@ -1,5 +1,10 @@
 {% extends "webpages/base.html" %}
 
-{% block content%}
-
-{%endblock%}
+{% block content %}
+    <h1>Tell Us</h1>
+    <form class="form-with-validation" action="{% url 'suggestion' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button class="form-submit">Submit</button>
+    </form>
+{% endblock %}
