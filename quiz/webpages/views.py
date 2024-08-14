@@ -1,10 +1,13 @@
 from django.shortcuts import render
-from .models import Contact,Suggests 
+from .models import Contact,Suggests
+from users.models import UserProfile
 from .forms import Suggest
 from django.http import HttpResponse
 # Create your views here.
 def home(request):
-    return render(request, "webpages/home.html")
+    top_3_values = UserProfile.objects.order_by('-total_score')[:3]
+
+    return render(request, "webpages/home.html", {"scores":top_3_values})
 
 def contact_us(request):
     if request.method == "POST":
@@ -36,3 +39,7 @@ def suggestion(request):
         return render(request, "webpages/thanks.html")
 
     return render(request, "webpages/contact.html")
+
+def all_scores(request):
+    all = UserProfile.objects.order_by('-total_score')
+    return render(request, "webpages/scores.html",{"values":all ,"n":0})

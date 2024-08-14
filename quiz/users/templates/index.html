@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {%block content%}
-
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{%static 'css/styles.css'%}">
+{% endblock %}
 {%for message in messages%}
 <div class="message {{message.tags}}">
     {{message}}

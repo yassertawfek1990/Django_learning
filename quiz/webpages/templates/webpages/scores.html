@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content%}
+<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+
+    <h1 class="display-4 fw-normal text-body-emphasis">All Scores</h1>
+   
+
+    </div>
+
+    <div>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Score</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for value in values %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th> <!--instead of n++ we have a counter built in increasers from 0 for each for cycle we have also more options below-->
+            <td>{{value.user.username}}</td>
+            <td>{{value.user.first_name}}</td>
+            <td>{{value.user.last_name}}</td>
+            <td>{{value.total_score}}</td>
+          </tr>
+           {% endfor %}
+        </tbody>
+      </table>
+    </div>
+{%endblock%}
+
+<!--
+forloop.counter	The current iteration of the loop (1-indexed)
+forloop.counter0	The current iteration of the loop (0-indexed)
+forloop.revcounter	The number of iterations from the end of the loop (1-indexed)
+forloop.revcounter0	The number of iterations from the end of the loop (0-indexed)
+forloop.first	True if this is the first time through the loop
+forloop.last	True if this is the last time through the loop
+forloop.parentloop	For nested loops, this is the loop surrounding the current one
+-->

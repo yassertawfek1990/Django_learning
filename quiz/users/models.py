@@ -15,6 +15,9 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     total_score = models.IntegerField(default=0)
 
+    def __str__(self):
+        return self.user.username
+
 
 # we always need to register it in admin.py
 # from django.contrib import admin
