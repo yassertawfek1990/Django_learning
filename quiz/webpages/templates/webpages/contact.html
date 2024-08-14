@@ -2,7 +2,7 @@
 
 {% block content%}
 
-<form method="post" action="{% url 'contact' %}" class="was-validated">
+<form method="post" action="{% url 'contact' %}" class="was-validated" style="padding-top: 10px; padding-left: 10px;">
   {% csrf_token %}
     <div class="mb-3 ml-3" class="ml-5">
         <label for="exampleInputPassword1" class="form-label">Your Name</label>

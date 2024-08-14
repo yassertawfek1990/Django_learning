@@ -7,12 +7,12 @@
 <div class="center">
 
     {%for message in messages%}
-    <div class="message {{message.tags}}">
+    <div class="message {{message.tags}}" style="padding-top: 10px; padding-left: 10px;">
         {{message}}
     </div>
         {%endfor%}
 
-    <form method="post" action="{%url "login"%}">
+    <form method="post" action="{%url "login"%}" style="padding-top: 10px;">
         {% csrf_token %}
         {{form.as_p}}
         <button type="submit">Login</button>

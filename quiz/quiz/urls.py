@@ -19,7 +19,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users', include('users.urls')),
+    path('users/', include('users.urls')),
     path('',include('webpages.urls')),
+    path('quiz/',include('Quizzy.urls')),
     path("accounts/", include("django.contrib.auth.urls")) # it creates default urls for loggin and register we just need to create templates for them
 ]

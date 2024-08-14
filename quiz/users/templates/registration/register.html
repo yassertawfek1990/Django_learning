@@ -7,7 +7,7 @@
 <div class="center">
 
 
-    <form method="post" action="{%url 'register'%}">
+    <form method="post" action="{%url 'register'%}" style="padding-top: 10px; padding-left: 10px;">
         {% csrf_token %}
         {{form.as_p}}
         <button type="submit">Register</button>
