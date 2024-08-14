@@ -65,6 +65,4 @@ def activate(request, uidb64, token ):
     
 def logout_view(request):
     logout(request)
-    return render(request, "index.html", {
-        "message": "Logged out."
-    })
+    return redirect("main")

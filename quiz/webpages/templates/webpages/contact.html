@@ -1,4 +1,4 @@
-{% extends "webpages/base.html" %}
+{% extends "base.html" %}
 
 {% block content%}
 
@@ -15,8 +15,13 @@
     </div>
    
     <div class="mb-3 ml-3" class="ml-5">
+      {% if form %}
         <label for="exampleInputPassword1" class="form-label" >Your Meessage</label>
         <input name="content"  type="text" class="form-control"  id="floatingTextarea2" style="height: 100px" required>
+        {% else %}
+        <label for="exampleInputPassword1" class="form-label" >Your suggestion</label>
+        <input name="content"  type="text" class="form-control"  id="floatingTextarea2" style="height: 100px" required>
+        {% endif %}
      </div>
      
     <button type="submit" class="btn btn-primary">Submit</button>
