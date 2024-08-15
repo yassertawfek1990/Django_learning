@@ -12,173 +12,52 @@
     <h1 class="display-4 fw-normal text-body-emphasis">All Categories</h1>
 </div>
 <div class="row">
+
+{% for key, value in cats.items%}
+
     <div class="col-sm-4 mb-3 mb-sm-0">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <h5 class="card-title">{{key}}</h5>
+          <p class="card-text">Test your Knowledge! Play now ane let us know how much do you know about this category</p>
+          {% if level == "all" %}
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               Play Now
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="#">Easy</a></li>
-              <li><a class="dropdown-item" href="#">Medium</a></li>
-              <li><a class="dropdown-item" href="#">Hard</a></li>
+              <li><a class="dropdown-item" href="{% url 'game' 'easy' value %}">Easy</a></li>
+              <li><a class="dropdown-item" href="{% url 'game' 'medium' value %}">Medium</a></li>
+              <li><a class="dropdown-item" href="{% url 'game' 'hard' value %}">Hard</a></li>
             </ul>
           </div>
+          {% elif level == "easy" %}
+          <a href="{% url 'game' 'easy' value %}">
+          <button class="btn btn-secondary" type="button" id="dropdownMenuButton1"  aria-expanded="false">
+            Play Now
+          </button>
+          </a>
+          {% elif level == "medium" %}
+          <a href="{% url 'game' 'medium' value %}">
+          <button class="btn btn-secondary" type="button" id="dropdownMenuButton1" aria-expanded="false">
+            Play Now
+          </button>
+          </a>
+          {% elif level == "hard" %}
+          <a href="{% url 'game' 'hard' value %}">
+          <button class="btn btn-secondary" type="button" id="dropdownMenuButton1" aria-expanded="false">
+            Play Now
+          </button>
+          </a>
+          {% endif %}
         </div>
       </div>
     </div>
-    <div class="col-sm-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  Play Now
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#">Easy</a></li>
-                  <li><a class="dropdown-item" href="#">Medium</a></li>
-                  <li><a class="dropdown-item" href="#">Hard</a></li>
-                </ul>
-              </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  Play Now
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#">Easy</a></li>
-                  <li><a class="dropdown-item" href="#">Medium</a></li>
-                  <li><a class="dropdown-item" href="#">Hard</a></li>
-                </ul>
-              </div>
-          </div>
-        </div>
-      </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-4 mb-3 mb-sm-0">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              Play Now
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="#">Easy</a></li>
-              <li><a class="dropdown-item" href="#">Medium</a></li>
-              <li><a class="dropdown-item" href="#">Hard</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              Play Now
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="#">Easy</a></li>
-              <li><a class="dropdown-item" href="#">Medium</a></li>
-              <li><a class="dropdown-item" href="#">Hard</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  Play Now
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#">Easy</a></li>
-                  <li><a class="dropdown-item" href="#">Medium</a></li>
-                  <li><a class="dropdown-item" href="#">Hard</a></li>
-                </ul>
-              </div>
-          </div>
-        </div>
-      </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-4 mb-3 mb-sm-0">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              Play Now
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="#">Easy</a></li>
-              <li><a class="dropdown-item" href="#">Medium</a></li>
-              <li><a class="dropdown-item" href="#">Hard</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              Play Now
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="#">Easy</a></li>
-              <li><a class="dropdown-item" href="#">Medium</a></li>
-              <li><a class="dropdown-item" href="#">Hard</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  Play Now
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#">Easy</a></li>
-                  <li><a class="dropdown-item" href="#">Medium</a></li>
-                  <li><a class="dropdown-item" href="#">Hard</a></li>
-                </ul>
-              </div>
-          </div>
-        </div>
-      </div>
-  </div>
-</body>
-</html>
+
+    
+{% endfor%}
+
+</div>
 {% endblock %}
+
+
