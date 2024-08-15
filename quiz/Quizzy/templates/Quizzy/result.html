@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content%}
+<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal text-body-emphasis">Answers</h1>
+</div>
+<ol class="list-group list-group-numbered">
+    {% for item in all %}
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">{{item.0}}</div>
+        {{item.1}}
+      </div>
+      
+    </li>
+    {%endfor %}
+   
+  </ol>
+  <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal text-body-emphasis">Summary</h1>
+</div>
+<div>
+    <table class="table">
+        <thead>
+          <tr>
+            
+            <th scope="col">Username</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Score</th>
+            <th scope="col">Final Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">{{info.user.username}}</th> 
+            <td>{{info.user.first_name}}</td>
+            <td>{{info.user.last_name}}</td>
+            <td>{{the_score}}</td>
+            <td>{{info.total_score}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+{% endblock %}
