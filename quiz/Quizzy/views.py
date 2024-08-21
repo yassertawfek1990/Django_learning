@@ -30,11 +30,8 @@ def quiz_view(request,level,cat):
 
     if request.method == "POST":
         selected_answer = request.POST.get('q_answer')
-        print(selected_answer)
-        print(questions[n]["correct_answer"])
         if selected_answer == questions[n]["correct_answer"]:
             score += 1
-            print(score)
         if n < 9:
             n += 1
             question = questions[n]
@@ -59,21 +56,6 @@ def quiz_view(request,level,cat):
         wrong.append(answer)
         shuffle(wrong)
         return render(request, 'Quizzy/test.html', {"question": q, "options": wrong,"n":n+1,'level': level,'cat': cat})
-    
-
-def quiz_recursion_view(request,level,cat):
-    else:
-        n = 0
-        score = 0
-        questions = get_questions(level,cat)
-        question = questions[n]
-        q = html.unescape(question["question"])
-        answer = html.unescape(question["correct_answer"])
-        wrong = html.unescape(question["incorrect_answers"])
-        wrong.append(answer)
-        shuffle(wrong)
-        return render(request, 'Quizzy/test.html', {"question": q, "options": wrong,"n":n+1,'level': level,'cat': cat})
-    
 
 def categories(request,level):
     all_categories = {"Vehicles": 28,"Animals":27,"celebrities":26,"Art":25,"Politics":24,"History":23,"Geography":22, "Sports":21, "General Knowledge":9}
