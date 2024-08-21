@@ -1,18 +1,21 @@
 {% extends "base.html" %}
+{% load static %}
+
+
 {%block title %} Login {%endblock%}
 {% block css %}
-<link rel="stylesheet" type="text/css" href="{%static 'css/styles.css'%}">
 {% endblock %}
+
 {%block content%}
 <div class="center">
 
     {%for message in messages%}
-    <div class="message {{message.tags}}" style="padding-top: 10px; padding-left: 10px;">
+    <div class="message {{message.tags}}" style="padding-top: 20x; padding-left: 20px; ">
         {{message}}
     </div>
         {%endfor%}
 
-    <form method="post" action="{%url "login"%}" style="padding-top: 10px;">
+    <form method="post" action="{%url "login"%}" style="padding-top: 10px; padding-left: 10px; ">
         {% csrf_token %}
         {{form.as_p}}
         <button type="submit">Login</button>
