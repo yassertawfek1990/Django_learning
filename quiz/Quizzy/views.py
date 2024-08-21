@@ -3,16 +3,13 @@ from django.shortcuts import render,redirect
 from users.models import UserProfile
 import requests
 from django.core.mail import send_mail
-
-# Create your views here.
-from django.http import HttpResponseRedirect
-from django.http import HttpResponse
+import html
 
 
 def get_questions(level, cat):
     parameters = {
         "amount" : 10,
-        "category":cat, #general knowledge
+        "category":cat, 
         "difficulty":level,
         "type": "multiple"
     }
@@ -30,6 +27,7 @@ def quiz_view(request,level,cat):
     global same_category
     same_level = level
     same_category = cat
+
     if request.method == "POST":
         selected_answer = request.POST.get('q_answer')
         print(selected_answer)
@@ -40,14 +38,14 @@ def quiz_view(request,level,cat):
         if n < 9:
             n += 1
             question = questions[n]
-            q = question["question"]
-            answer = question["correct_answer"]
-            wrong = question["incorrect_answers"]
+            q = html.unescape(question["question"])
+            answer = html.unescape(question["correct_answer"])
+            wrong = html.unescape( question["incorrect_answers"])
             wrong.append(answer)
             shuffle(wrong)
             return render(request, 'Quizzy/test.html', {"question": q, "options": wrong, "n":n+1,'level': level,'cat': cat})
         else:
-        # You can now use `selected_answer` for whatever you need, like saving it to a database, processing it, etc.
+        # we can now use `selected_answer` for whatever we need, like saving it to a database, processing it, etc.
             
             return redirect("result")
     else:
@@ -55,9 +53,9 @@ def quiz_view(request,level,cat):
         score = 0
         questions = get_questions(level,cat)
         question = questions[n]
-        q = question["question"]
-        answer = question["correct_answer"]
-        wrong = question["incorrect_answers"]
+        q = html.unescape(question["question"])
+        answer = html.unescape(question["correct_answer"])
+        wrong = html.unescape(question["incorrect_answers"])
         wrong.append(answer)
         shuffle(wrong)
         return render(request, 'Quizzy/test.html', {"question": q, "options": wrong,"n":n+1,'level': level,'cat': cat})
@@ -70,26 +68,19 @@ def play(request):
     return render(request,'Quizzy/quizpage.html')
 
 def resulting(request):
-    # all_questions = []
-    # correct_answers = []
     data = []
     for item in questions:
-        data.append([item["question"],item["correct_answer"]])
+        data.append([html.unescape(item["question"]),html.unescape(item["correct_answer"])])
   
 
     if request.user.is_authenticated:
         old_queryset = list(UserProfile.objects.order_by('-total_score'))
-        print(old_queryset)
         user_profile = UserProfile.objects.get(user=request.user.id)  # Get the UserProfile of the logged-in user
-        print(user_profile)
         old_rank = old_queryset.index(user_profile) + 1
-        print(old_rank)
         user_profile.total_score += score  # Add points to the total_score
         user_profile.save()  # Save the updated profile
         new_queryset = list(UserProfile.objects.order_by('-total_score'))
-        print(new_queryset)
         new_rank = new_queryset.index(user_profile) + 1
-        print(new_rank)
         if new_rank < old_rank:
             send_mail(
                         "Your Ranking improved",
