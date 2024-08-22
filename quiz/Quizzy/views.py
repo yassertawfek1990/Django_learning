@@ -1,6 +1,7 @@
 from random import choice, shuffle
 from django.shortcuts import render,redirect
 from users.models import UserProfile
+from webpages.models import OldQuestions
 import requests
 from django.core.mail import send_mail
 import html
@@ -85,6 +86,12 @@ def resulting(request):
                         "fokak908070@gmail.com",
                         [user_profile.user.email],
                         fail_silently=False,)
+            
+        for row in data:
+            user_data = OldQuestions(user=request.user, Question = row[0], Answer = row[1])
+            user_data.save()
+        
+        
     else:
         user_profile = None
         old_rank = None

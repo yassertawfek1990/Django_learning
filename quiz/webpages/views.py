@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from .models import Contact,Suggests
 from users.models import UserProfile
-from .forms import Suggest
-from django.http import HttpResponse
+from .models import OldQuestions
 # Create your views here.
 def home(request):
     top_3_values = UserProfile.objects.order_by('-total_score')[:3]
@@ -43,3 +42,10 @@ def suggestion(request):
 def all_scores(request):
     all = UserProfile.objects.order_by('-total_score')
     return render(request, "webpages/scores.html",{"values":all ,"n":0})
+
+def data(request):
+    all_data = OldQuestions.objects.filter(user=request.user)
+    the_user = UserProfile.objects.get(user=request.user)
+    print(the_user)
+    print(all_data)
+    return render(request, "webpages/user_data.html",{"values":all_data, "userdata":the_user})

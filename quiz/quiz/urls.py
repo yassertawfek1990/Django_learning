@@ -22,5 +22,6 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('',include('webpages.urls')),
     path('quiz/',include('Quizzy.urls')),
-    path("accounts/", include("django.contrib.auth.urls")) # it creates default urls for loggin and register we just need to create templates for them
+    path("accounts/", include("django.contrib.auth.urls")), # it creates default urls for loggin and register we just need to create templates for them
+    path('api/',include('api.urls')),
 ]
