@@ -5,6 +5,8 @@ from webpages.models import OldQuestions
 import requests
 from django.core.mail import send_mail
 import html
+from .models import QuestionsBank
+from .forms import NewQuestion
 
 
 def get_questions(level, cat):
@@ -103,3 +105,22 @@ def random(request):
     random_category = choice([9,21,22,23,24,25,26,27,28])
     random_level = choice(["easy","medium","hard"])
     return redirect('game', level=random_level, cat=random_category)
+
+def users_q(request):
+        all_categories = ["Vehicles","Animals","celebrities","Art","Politics","History","Geography", "Sports", "General_Knowledge"]
+        return render(request,'Quizzy/users_questions.html', {"cats":all_categories})
+
+def add_q(request, category):
+    if request.method == "POST":
+        bank = QuestionsBank()
+        bank.category = category
+        bank.questions = request.POST.get('question')
+        bank.option1 = request.POST.get('option1')
+        bank.option2 = request.POST.get('option2')
+        bank.option3 = request.POST.get('option3')
+        bank.option4 = request.POST.get('option4')
+        bank.answer = request.POST.get('answer')
+        bank.save()
+        return render(request, "webpages/thanks.html")
+
+    return render(request, "Quizzy/add_question.html", {"cat":category})

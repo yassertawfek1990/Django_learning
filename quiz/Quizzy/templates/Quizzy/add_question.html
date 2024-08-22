@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content%}
+
+<form method="post" action="{% url 'add_questions' cat %}" class="was-validated" style="padding-top: 10px; padding-left: 10px;">
+  {% csrf_token %}
+
+    <div class="mb-3 ml-3" class="ml-5">
+      <label for="exampleInputEmail1" class="form-label">Question</label>
+      <input name="question" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+    </div>
+   
+    <div class="mb-3 ml-3" class="ml-5">
+        <label for="exampleInputPassword1" class="form-label" >Option1</label>
+        <input name="option1"  type="text" class="form-control"  id="floatingTextarea2" style="height: 100px" required>
+     </div>
+     
+     <div class="mb-3 ml-3" class="ml-5">
+        <label for="exampleInputPassword1" class="form-label" >Option2</label>
+        <input name="option2"  type="text" class="form-control"  id="floatingTextarea2" style="height: 100px" required>
+     </div>
+
+     <div class="mb-3 ml-3" class="ml-5">
+        <label for="exampleInputPassword1" class="form-label" >Option3</label>
+        <input name="option3"  type="text" class="form-control"  id="floatingTextarea2" style="height: 100px" required>
+     </div>
+
+     <div class="mb-3 ml-3" class="ml-5">
+        <label for="exampleInputPassword1" class="form-label" >Option4</label>
+        <input name="option4"  type="text" class="form-control"  id="floatingTextarea2" style="height: 100px" required>
+     </div>
+
+     <div class="mb-3 ml-3" class="ml-5">
+        <label for="exampleInputPassword1" class="form-label" >Answer</label>
+        <input name="answer"  type="text" class="form-control"  id="floatingTextarea2" style="height: 100px" required>
+     </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+{%endblock%}

@@ -7,4 +7,7 @@ urlpatterns = [
     path("play/<slug:level>/<int:cat>", views.quiz_view, name="game"),
     path("results", views.resulting, name="result"),
     path("r", views.random, name="random"),
+   # path("playing/<slug:category>", views.play_users, name="gaming"),
+    path("users-questions", views.users_q, name="users_section"),
+    path("add-questions/<slug:category>", views.add_q, name="add_questions"),
 ]
