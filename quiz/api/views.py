@@ -13,7 +13,7 @@ def get_data_simple(request): # this is simplized version
 
 
 @api_view(['GET'])
-def get_data(request,name): # this is real data version
+def get_data(request,name=None): # this is real data version
     items = OldQuestions.objects.filter(user__username=name) # in one to many relationships we always use filter not get
     serializer = ItemSerializer(items, many = True) # many =  True when we want to serialize more that one item and many = False when we serialize one item only
     return Response(serializer.data)

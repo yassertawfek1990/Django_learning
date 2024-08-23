@@ -38,7 +38,7 @@
   </div>
   {% else %}
   <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-    <h1 class="display-4 fw-normal text-body-emphasis">Final Score : {{the_score}} </h1>
+    <h1 class="display-4 fw-normal text-body-emphasis">Total Score : {{the_score}} </h1>
   </div>
   {% endif %}
 <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
@@ -58,9 +58,15 @@
   </ol>
 
   <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+    {% if level %}
     <a href="{% url 'game' level category %}">
       <button type="button" class="btn btn-warning">Play Again</button>
       </a>
+    {% else %}
+    <a href="{% url 'gaming' category %}">
+      <button type="button" class="btn btn-warning">Play Again</button>
+      </a>
+    {% endif %}
   </div>
   
   

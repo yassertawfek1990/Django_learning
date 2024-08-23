@@ -4,10 +4,32 @@
 
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{%static 'css/style.css'%}">
+
+<script>
+    let timeLeft = 15;
+
+    function startTimer() {
+        const timer = setInterval(() => {
+            document.getElementById("timer").innerHTML = timeLeft;
+            timeLeft--;
+
+            if (timeLeft < 0) {
+                clearInterval(timer);
+                document.getElementById("quiz-form").submit();
+            }
+        }, 1000);
+    }
+
+    window.onload = function() {
+        startTimer();
+    };
+</script>
 {% endblock %}
 
 {% block content%}
-
+<div style=" position: absolute; top: 90px; right: 30px; font-size: 32px; font-weight: bold;">
+    <span id="timer">15</span>s
+</div>
 <div class="container-fluid">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -17,8 +39,13 @@
          <div class="modal-header" style="padding-top: 10px;">
             <h3 >{{question}}</h3>
         </div>
+       
         <div class="modal-body" style="padding-top: 10px;">
-            <form method="post" action="{% url 'game' level cat %}">
+            {% if level %}
+            <form method="post" id="quiz-form" action="{% url 'game' level cat %}">
+            {% else %}
+            <form method="post" id="quiz-form" action="{% url 'gaming' cat %}">
+            {% endif %}
                 {% csrf_token %}
                 <div class="col-xs-12">
                     <div class="quiz" id="quiz" data-toggle="buttons">
