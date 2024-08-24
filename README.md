@@ -15,6 +15,13 @@ then created the view function for it and created a result page and view functio
 I used the userprofile table to show the old score and the new score in the result table and also the old rank and the new rank
 then created the categories page and its function
 then I added the links to all the buttons in my templates
+then I Created an API app that get requests from API to retrieve all the questions for a user by its username 
+it also send post requests to add questions to the user via user name 
+I added a documentation template and added both of them to the footer with quick link
+I added a timer function
+I added a new section where users can add questions to specific category and play from there
+I created in the nav bar a sction called users questions with categories and add questions and play to button to each category
+now the website is covering all the requirements mentioned in the ideas bank for the quiz project on AlX
 then I have tried the website many times and had fun playing
 then I deploayed the website on pythoneverywhere.com
 and here is the link
