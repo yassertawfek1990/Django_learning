@@ -4,12 +4,13 @@ from django.contrib.auth.models import User
 from webpages.models import OldQuestions
 from .serializers import ItemSerializer
 from rest_framework import status
+from django.shortcuts import render
 
 
-@api_view(['GET'])
-def get_data_simple(request): # this is simplized version
-    test = {"name":"anything", "age":12}
-    return Response(test)
+# @api_view(['GET'])
+# def get_data_simple(request): # this is simplized version
+#     test = {"name":"anything", "age":12}
+#     return Response(test)
 
 
 @api_view(['GET'])
@@ -18,12 +19,12 @@ def get_data(request,name=None): # this is real data version
     serializer = ItemSerializer(items, many = True) # many =  True when we want to serialize more that one item and many = False when we serialize one item only
     return Response(serializer.data)
 
-@api_view(['POST']) # works only when we work on a whole table with no
-def add_data_simple(request): # this is simplized version to add data to the api
-    serializer = ItemSerializer(data = request.data) # this will get the data submitted with the request
-    if serializer.is_valid():
-        serializer.save()
-    return Response(serializer.data)
+# @api_view(['POST']) # works only when we work on a whole table with no
+# def add_data_simple(request): # this is simplized version to add data to the api
+#     serializer = ItemSerializer(data = request.data) # this will get the data submitted with the request
+#     if serializer.is_valid():
+#         serializer.save()
+#     return Response(serializer.data)
     
 
 
@@ -48,3 +49,6 @@ def add_data(request, name):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+def doc(request):
+    return render(request,"api/docs.html")

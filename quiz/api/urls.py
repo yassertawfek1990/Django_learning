@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     path("", views.get_data, name="api_main"),
+    path("documentation", views.doc, name="docs"),
     path("<slug:name>", views.get_data, name="api_view"),
     path("add/<slug:name>", views.add_data, name="adding"),
 ]

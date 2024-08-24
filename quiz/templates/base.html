@@ -60,6 +60,7 @@
             <li class="nav-item"><a href={% url "contact" %} class="nav-link px-2 text-body-secondary">Contact Us</a></li>
             <li class="nav-item"><a href={% url "suggestion" %}  class="nav-link px-2 text-body-secondary">Suggestions</a></li>
             <li class="nav-item"><a href={% url "about" %} class="nav-link px-2 text-body-secondary">About Us</a></li>
+            <li class="nav-item"><a href={% url "docs" %} class="nav-link px-2 text-body-secondary">API Documetation</a></li>
             {%if user.is_authenticated%}
             <li class="nav-item"><a href={% url "api_view" user.username %} class="nav-link px-2 text-body-secondary">API</a></li>
             {%else%}
