@@ -1,58 +1,80 @@
 {% extends "base.html" %}
-{%block title %} Categories {%endblock%}
-{% block css %}
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-<style>
-  *{
-  color: #0d6efd;
-}
-#bt:hover{
-  background-color: #fff;
-  color: #0d6efd;
-}
-  #bt{
-  color: #fff;
-  background-color: #0d6efd;
-}
-#bt:focus{
-  color: #fff;
-  background-color: #0d6efd;
-}
 
-.dropdown-menu li a{
-  color: #0d6efd;
-}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{%static 'css/style.css'%}">
+
+<script>
+    let timeLeft = 15;
+
+    function startTimer() {
+        const timer = setInterval(() => {
+            document.getElementById("timer").innerHTML = timeLeft;
+            timeLeft--;
+
+            if (timeLeft < 0) {
+                clearInterval(timer);
+                document.getElementById("quiz-form").submit();
+            }
+        }, 1000);
+    }
+
+    window.onload = function() {
+        startTimer();
+    };
+</script>
+<style>
+    label:hover{
+        transform: scale(.95) !important; 
+    }
 </style>
 {% endblock %}
-{%block content%}
-	
 
-<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-    <h1 class="display-4 fw-normal text-body-emphasis">All Categories</h1>
+{% block content%}
+<div style=" position: absolute; top: 90px; right: 30px; font-size: 32px; font-weight: bold;">
+    <span id="timer">15</span>s
 </div>
-<div class="row">
-
-{% for key in cats %}
-
-<div class="col-sm-4 mb-3 mb-sm-0">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{key}}</h5>
-        <p class="card-text">Test your Knowledge! Play now and let us know how much you know about this category</p>
-        <div class="text-end">
-          <a href="{% url "gaming" key %}" class="btn btn-secondary me-2" id="bt">Play Now</a>
-          <a href="{% url "add_questions" key %}" class="btn btn-warning">Add Questions</a>
+<div class="container-fluid">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="pricing-header p-3 pb-md-4 mx-auto text-center" style="padding-top: 10px;">
+            <h1 class="display-4 fw-normal text-body-emphasis">Question {{n}}</h1>
         </div>
-      </div>
-    </div>
-  </div>
-
-    
-{% endfor%}
-
+         <div class="modal-header" style="padding-top: 10px; color: #0d6efd;">
+            <h3 >{{question}}</h3>
+        </div>
+       
+        <div class="modal-body" style="padding-top: 10px;">
+            {% if level %}
+            <form method="post" id="quiz-form" action="{% url 'game' level cat %}">
+            {% else %}
+            <form method="post" id="quiz-form" action="{% url 'gaming' cat %}">
+            {% endif %}
+                {% csrf_token %}
+                <div class="col-xs-12">
+                    <div class="quiz" id="quiz" data-toggle="buttons">
+                        {% for option in options %}
+                        <div class="row" style="padding-top: 10px;" style="background-color: white !important; color: black !important; ">
+                            <label class="element-animation1 btn btn-lg btn-danger btn-block" style="background-color: white !important; color: #0d6efd !important; border: solid #0d6efd; width: 98%; margin-left: 10px;">
+                                <span class="btn-label" style="background-color: #0d6efd !important;"><i class="glyphicon glyphicon-chevron-right" style="background-color: #0d6efd !important;"></i></span> 
+                                <input type="radio" name="q_answer" value= "{{option}}"> 
+                                {{option}}
+                            </label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div style="padding-top: 10px;">
+                    <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+                    <button type="submit" class="w-100 btn btn-lg btn-primary" >Submit</button>
+                </div>
+                </div>
+            </form>
+        </div>
+        
+   
 </div>
-{% endblock %}
-
-
+</div>
+</div>
+</body>
+{%endblock%}
