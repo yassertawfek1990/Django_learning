@@ -1,5 +1,11 @@
 {% extends "base.html" %}
-
+{% block css %}
+<style>
+  *{
+    color: #0d6efd;
+  }
+</style>
+{% endblock %}
 {% block content%}
 <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
   <h1 class="display-4 fw-normal text-body-emphasis">Summary</h1>
@@ -38,7 +44,7 @@
   </div>
   {% else %}
   <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-    <h1 class="display-4 fw-normal text-body-emphasis">Total Score : {{the_score}} </h1>
+    <h1 class="display-4 fw-normal text-body-emphasis" style="color:#0d6efd !important ;">Total Score : {{the_score}} </h1>
   </div>
   {% endif %}
 <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
